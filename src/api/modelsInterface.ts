@@ -23,7 +23,6 @@ export interface IUser {
     email: string;
     verified: Boolean;
     username: string;
-    password: string;
     bio: string;
     score: number;
     joinedAt: Date;
