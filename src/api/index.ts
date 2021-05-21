@@ -1,5 +1,6 @@
 import axios from "axios";
 import { ISignUp, ILogIn, IUpdateUser, IPostData, IThreadData } from './apiInterface';
+import { IThread } from './modelsInterface';
 
 const API = axios.create();
 

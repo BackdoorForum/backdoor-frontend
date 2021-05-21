@@ -3,6 +3,7 @@ import LoginModal from '../LoginModal/LoginModal';
 import { logout } from '../../api/index';
 import { deauthenticate } from '../../store/authSlice';
 import { toast, Flip } from 'react-toastify';
+import { IStore } from '../../store/authInterface';
 
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -10,17 +11,11 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import '../../scss/Navbar.scss';
 
-interface Store {
-    auth: {
-        isAuthenticated: boolean
-    }
-}
-
 const Navbar: React.FC = () => {
     const [showLoginModal, setShowLoginModal] = useState(false);
     const history = useHistory();
     const dispatch = useDispatch();
-    const isAuthenticated = useSelector((state: Store) => state.auth.isAuthenticated)
+    const isAuthenticated = useSelector((state: IStore) => state.auth.isAuthenticated)
 
     const backdropClickHandler = () => {
         setShowLoginModal(false);
@@ -64,7 +59,7 @@ const Navbar: React.FC = () => {
                         onClick={signupClickHandler}
                     >
                         Sign Up
-                                </button>
+                    </button>
                 </li>
                 <li>
                     <button className="transition-border duration-300 border-4 border-transparent hover:bg-grey-lighter
@@ -72,7 +67,7 @@ const Navbar: React.FC = () => {
                         onClick={loginClickHandler}
                     >
                         Login
-                                </button>
+                    </button>
                 </li>
             </>
         );
