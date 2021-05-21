@@ -4,8 +4,6 @@ import { IThread } from '../../api/modelsInterface';
 
 import { useEffect, useState } from 'react';
 
-import classes from './Threads.module.scss';
-
 const Threads: React.FC = () => {
     const [threadsInfo, setThreadsInfo] = useState<Array<IThread>>([]);
 
@@ -17,7 +15,6 @@ const Threads: React.FC = () => {
 
     return (
         <>
-        <div className={`mt-0 pt-0 ${classes.HeroHeader}`}>
             <Navbar />
             <section className="flex flex-wrap justify-center h-1/2 md:h-3/4">
                 <div>
@@ -25,7 +22,6 @@ const Threads: React.FC = () => {
                     <p> {threadsInfo[0]?.body} </p>
                 </div>
             </section>
-        </div>
         </>
     );
 };
