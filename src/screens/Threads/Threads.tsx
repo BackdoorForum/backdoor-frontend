@@ -11,11 +11,32 @@ import ChatIllustration from '../../assets/chat-illustration.svg';
 import { useEffect, useState } from 'react';
 
 const Threads: React.FC = () => {
+    const [allThreads, setAllThreads] = useState<Array<IThread>>([]);
     const [threads, setThreads] = useState<Array<IThread>>([]);
+    const [search, setSearch] = useState<string>();
+
+    const handleSearchChange = (e: any) => setSearch(e.target.value);
+
+    useEffect(() => {
+		if(search) {
+			allThreads.filter(thread => 
+                (thread.title.toLowerCase().includes(search.toLowerCase()) 
+                    || thread.body.toLowerCase().includes(search.toLowerCase()))
+					? setThreads(oldThreads => [...oldThreads, thread])
+                    : null
+			);
+		} else {
+			setThreads(allThreads);
+		}
+		return () => setThreads([]);
+	}, [search, allThreads]);
 
     useEffect(() => {
         fetchAllThreads()
-            .then(fetchedThreads => setThreads(fetchedThreads.data))
+            .then(fetchedThreads => {
+                setThreads(fetchedThreads.data);
+                setAllThreads(fetchedThreads.data);
+            })
             .catch(err => toast.error(err.response.data.message, { transition: Flip }))
     }, []);
 
@@ -36,6 +57,10 @@ const Threads: React.FC = () => {
                     titleColor="grey-darker"
                     descriptionColor="grey-lighter"
                     illustration={ChatIllustration}
+                    showSearch={true}
+                    searchPlaceholder="search thread"
+                    searchTitle="Search your favourite topic"
+                    handleChange={handleSearchChange}
                 />
 
                 {/* Content Column */}

@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import { sidebarVariants } from '../../variants/index';
+import TextFeild from './TextField';
 import Illustration from '../Utilities/Illustration';
+import { ChangeEventHandler } from 'react';
 
 interface Props {
     logo?: boolean;
@@ -10,6 +12,10 @@ interface Props {
     titleColor?: string
     descriptionColor?: string
     bgColor: string;
+    showSearch?: boolean;
+    searchTitle?: string;
+    searchPlaceholder?: string;
+    handleChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
 const Sidebar: React.FC<Props> = props => (
@@ -30,9 +36,19 @@ const Sidebar: React.FC<Props> = props => (
             </>
         )}
 
-        <p className={`font-body text-2xl tracking-wider text-${props.descriptionColor} text-left mx-2 mt-4 xl:mb-24 2xl:mb-52`}>
+        <p className={`font-body text-2xl tracking-wider text-${props.descriptionColor} text-left mx-2 mt-4 xl:mb-16 2xl:mb-32`}>
             {props.description}
         </p>
+
+        {props.showSearch && (
+            <>
+                <p className={`font-body text-2xl tracking-wider text-${props.descriptionColor} text-left mx-2 mt-4`}>
+                    {props.searchTitle}
+                </p>
+                <TextFeild type="text" placeholder={props.searchPlaceholder||""} onChange={props.handleChange} />
+            </>
+        )}
+
         <Illustration src={props.illustration} />
     </motion.div>
 );

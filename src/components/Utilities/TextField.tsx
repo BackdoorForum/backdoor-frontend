@@ -1,4 +1,5 @@
 import { UserIcon, MailIcon, KeyIcon } from '@heroicons/react/solid';
+import { ChangeEventHandler } from 'react';
 
 interface Props {
     placeholder: string;
@@ -6,6 +7,7 @@ interface Props {
     label?: string | undefined;
     name?: string;
     required?: boolean;
+    onChange?: ChangeEventHandler<HTMLInputElement>;
     inputRef?: React.RefObject<HTMLInputElement>;
     icon?: "mail" | "user" | "password";
 }
@@ -24,6 +26,7 @@ const TextField: React.FC<Props> = props => {
                     className="input rounded-xl"
                     type={props.type}
                     placeholder={props.placeholder}
+                    onChange={props.onChange}
                     required={props.required}
                     ref={props.inputRef} />
                 <span className="icon is-small is-left flex justify-center items-center">
