@@ -2,11 +2,11 @@ export interface IPost {
     _id: string;
     title: string;
     body: string;
-    author: string;
+    user: string;
     votes: [string];
     downVotes: [string];
     tags: [string];
-    comments: [{ author: string, message: string, votes: number, createdAt: Date }];
+    comments: [string];
     createdAt: Date;
     updatedAt: Date;
 }
@@ -16,7 +16,7 @@ export interface IThread {
     body: string;
     posts: [string];
     numberOfPosts: number;
-    author: string;
+    user: string;
     createdAt: Date;
 }
 
@@ -29,6 +29,7 @@ export interface IUser {
     score: number;
     joinedAt: Date;
     posts: [string];
+    comments: [string];
     votedPosts: [string];
     votedComments: [string];
 }
