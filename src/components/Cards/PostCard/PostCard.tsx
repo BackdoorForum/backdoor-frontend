@@ -57,6 +57,7 @@ const PostCard: React.FC<Props> = props => {
     useEffect(() => {
         setVotes(props.votes);
         setDownVotes(props.downVotes);
+        console.log("useEffect called");
         updateVotes(props.votes, props.downVotes);
     }, [props.votes, props.downVotes, userId, updateVotes]);
 
