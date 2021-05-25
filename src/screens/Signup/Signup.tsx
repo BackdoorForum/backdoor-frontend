@@ -1,5 +1,6 @@
 import Navbar from '../../components/Navbars/Navbar';
-import TextField from '../../components/Utilities/TextField';
+import InputField from '../../components/Utilities/InputField';
+import { MailIcon, UserIcon, KeyIcon } from '@heroicons/react/solid';
 import SuccessButton from '../../components/Buttons/SuccessButton';
 import Heading from '../../components/Utilities/Heading';
 import Sidebar from '../../components/Utilities/Sidebar';
@@ -91,14 +92,26 @@ const Signup: React.FC = () => {
                             Get your access to Backdoor
                         </Heading>
                         <form onSubmit={submitHandler} className="w-full mt-4 mb-2 mx-4 flex flex-col items-center">
-                            <TextField placeholder="john.doe@example.com" type="email" name="email" required
-                                label="Email" inputRef={emailRef} icon="mail" />
-                            <TextField placeholder="johndoe" type="text" name="username" required
-                                label="Username" inputRef={usernameRef} icon="user" />
-                            <TextField placeholder="Password" type="password" name="password" required
-                                label="Password" inputRef={passwordRef} icon="password" />
-                            <TextField placeholder="Confirm Password" type="password" required
-                                label="Confirm Password" inputRef={confirmPasswordRef} icon="password" />
+                            <InputField placeholder="john.doe@example.com" type="email" name="email" required
+                                label="Email" inputRef={emailRef} >
+                                <MailIcon className="w-2/3 h-2/3" />
+                            </InputField>
+
+                            <InputField placeholder="johndoe" type="text" name="username" required
+                                label="Username" inputRef={usernameRef} >
+                                <UserIcon className="w-2/3 h-2/3" />
+                            </InputField>
+
+                            <InputField placeholder="Password" type="password" name="password" required
+                                label="Password" inputRef={passwordRef} >
+                                <KeyIcon className="w-2/3 h-2/3" />
+                            </InputField>
+
+                            <InputField placeholder="Confirm Password" type="password" required
+                                label="Confirm Password" inputRef={confirmPasswordRef} >
+                                <KeyIcon className="w-2/3 h-2/3" />
+                            </InputField>
+
                             <SuccessButton type="submit">Sign Up</SuccessButton>
                         </form>
                         <ErrorMessage>{errorMessage}</ErrorMessage>
