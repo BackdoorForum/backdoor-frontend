@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ISignUp, ILogIn, IUpdateUser, IPostData, IThreadData } from './apiInterface';
+import { ISignUp, ILogIn, IUpdateUser, IPostData, IThreadData, ICommentData } from './apiInterface';
 
 const API = axios.create();
 
@@ -7,6 +7,7 @@ const API = axios.create();
 export const fetchAllThreads = () => API.get('/threads');
 export const fetchThread = (title: string) => API.get(`/threads/${title}`);
 export const createThread = (threadData: IThreadData) => API.post('/threads/create', threadData);
+export const updateThread = (title: string, threadData: IThreadData) => API.patch('/threads/update', { title, threadData });
 
 // Posts API Routes
 export const fetchAllPosts = () => API.get('/posts');
@@ -16,6 +17,11 @@ export const createPost = (postData: IPostData) => API.post('/posts/create', pos
 export const updatePost = (id: string, updatedPost: IPostData) => API.patch('/posts/update', { id, updatedPost });
 export const reactPost = (id: string, action: 'like' | 'dislike') => API.patch(`/posts/react?id=${id}&action=${action}`);
 export const deletePost = (id: string) => API.delete(`/posts/delete?id=${id}`);
+
+// Comments API Routes
+export const getComment = (id: string) => API.get('/comments/' + id);
+export const createComment = (postId: string, comment: ICommentData) => API.post(`/comments/create?postId=${postId}`, comment);
+export const updateComment = (commentId: string, comment: ICommentData) => API.patch(`/comments/update`, { id: commentId, comment });
 
 // User API Routes
 export const logout = () => API.post('/user/logout');

@@ -25,3 +25,7 @@ export interface IThreadData {
     title: string;
     body: string;
 }
+
+export interface ICommentData {
+    body: string
+}

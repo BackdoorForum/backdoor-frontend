@@ -20,6 +20,17 @@ export interface IThread {
     createdAt: Date;
 }
 
+export interface IComment {
+    author: string;
+    body: string;
+    post: string;
+    votes: [ string ];
+    downVotes: [ string ];
+    edited: boolean;
+    createdAt: Date;
+    updatedAt: Date;
+}
+
 export interface IUser {
     permission_level: number;
     email: string;
