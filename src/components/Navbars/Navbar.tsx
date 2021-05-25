@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import LoginModal from '../LoginModal/LoginModal';
+import LoginModal from '../Modals/LoginModal/LoginModal';
+import CreateThreadModal from '../Modals/CreateThreadModal/CreateThreadModal';
 import { logout } from '../../api/index';
 import { deauthenticate, setId, setUsername, setPermissionLevel } from '../../store/userSlice';
 import { toast, Flip } from 'react-toastify';
@@ -13,13 +14,17 @@ import '../../scss/Navbar.scss';
 
 const Navbar: React.FC = () => {
     const [showLoginModal, setShowLoginModal] = useState(false);
+    const [showCreateThreadModal, setShowCreateThreadModal] = useState(false);
     const dispatch = useDispatch();
-    const isAuthenticated = useSelector((state: IStore) => state.user.isAuthenticated)
+    const isAuthenticated = useSelector<IStore>(state => state.user.isAuthenticated);
+    const permissionLevel = useSelector<IStore>(state => state.user.permissionLevel) as number;
 
     const backdropClickHandler = () => {
         setShowLoginModal(false);
+        setShowCreateThreadModal(false);
     }
     const loginClickHandler = () => setShowLoginModal(true);
+    const createThreadClickHandler = () => setShowCreateThreadModal(true);
 
     const logoutClickHandler = () => {
         logout()
@@ -40,34 +45,34 @@ const Navbar: React.FC = () => {
     if (isAuthenticated) {
         rightNavLinks = (
             <>
-                <li>
-                    <NavLink clicked={logoutClickHandler}>
-                        Logout
+                {permissionLevel >= 3 && (
+                    <NavLink clicked={createThreadClickHandler}>
+                        Create Thread
                     </NavLink>
-                </li>
+                )}
+                <NavLink clicked={logoutClickHandler}>
+                    Logout
+                </NavLink>
             </>
         );
     } else {
         rightNavLinks = (
             <>
-                <li>
-                    <Link to="/signup">
-                        <NavLink>
-                            Sign Up
+                <Link to="/signup">
+                    <NavLink>
+                        Sign Up
                     </NavLink>
-                    </Link>
-                </li>
-                <li>
-                    <NavLink clicked={loginClickHandler}>
-                        Login
-                    </NavLink>
-                </li>
+                </Link>
+                <NavLink clicked={loginClickHandler}>
+                    Login
+                </NavLink>
             </>
         );
     }
 
     return (
         <>
+            <CreateThreadModal show={showCreateThreadModal} backdropClicked={backdropClickHandler} />
             <LoginModal show={showLoginModal} backdropClicked={backdropClickHandler} />
             <nav className="flex flex-1 w-screen px-1 bg-grey sticky top-0 left-0 font-display font-medium z-30"
                 id="navbar">

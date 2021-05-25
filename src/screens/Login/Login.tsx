@@ -1,5 +1,6 @@
 import Navbar from '../../components/Navbars/Navbar';
-import TextField from '../../components/Utilities/TextField';
+import InputField from '../../components/Utilities/InputField';
+import { UserIcon, KeyIcon } from '@heroicons/react/solid';
 import SuccessButton from '../../components/Buttons/SuccessButton';
 import Heading from '../../components/Utilities/Heading';
 import Sidebar from '../../components/Utilities/Sidebar';
@@ -103,10 +104,16 @@ const Login: React.FC = () => {
                             Login to Backdoor
                         </Heading>
                         <form onSubmit={submitHandler} className="w-full mt-4 mb-2 mx-4 flex flex-col items-center">
-                            <TextField placeholder="john.doe@example.com" type="text" name="username" required
-                                label="Username or Email" inputRef={usernameRef} icon="user" />
-                            <TextField placeholder="Password" type="password" name="password" required
-                                label="Password" inputRef={passwordRef} icon="password" />
+                            <InputField placeholder="john.doe@example.com" type="text" name="username" required
+                                label="Username or Email" inputRef={usernameRef} >
+                                <UserIcon className="w-2/3 h-2/3" />
+                            </InputField>
+
+                            <InputField placeholder="Password" type="password" name="password" required
+                                label="Password" inputRef={passwordRef} >
+                                <KeyIcon className="w-2/3 h-2/3" />
+                            </InputField>
+
                             <SuccessButton type="submit">Login</SuccessButton>
                         </form>
                         <ErrorMessage>{errorMessage}</ErrorMessage>
