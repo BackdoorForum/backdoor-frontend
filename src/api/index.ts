@@ -22,6 +22,8 @@ export const deletePost = (id: string) => API.delete(`/posts/delete?id=${id}`);
 export const getComment = (id: string) => API.get('/comments/' + id);
 export const createComment = (postId: string, comment: ICommentData) => API.post(`/comments/create?postId=${postId}`, comment);
 export const updateComment = (commentId: string, comment: ICommentData) => API.patch(`/comments/update`, { id: commentId, comment });
+export const reactComment = (commentId: string, postId: string, action: 'like' | 'dislike') => API.patch(`/comments/react?postId=${postId}&commentId=${commentId}&action=${action}`);
+export const deleteComment = (commentId: string, postId: string) => API.delete(`/comments/delete?postId=${postId}&commentId=${commentId}`);
 
 // User API Routes
 export const logout = () => API.post('/user/logout');
