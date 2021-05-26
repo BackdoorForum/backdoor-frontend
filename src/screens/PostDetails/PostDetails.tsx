@@ -28,7 +28,7 @@ const PostDetails: React.FC = props => {
                 toast.error(err.response.data.message, { transition: Flip })
             });
 
-        fetchCommentsBySearch(postId)
+        fetchCommentsBySearch(postId, "")
             .then(res => setComments(res.data))
             .catch(err => {
                 history.goBack();

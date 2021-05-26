@@ -2,7 +2,7 @@ import PageBody from '../../components/Utilities/PageBody';
 import Navbar from '../../components/Navbars/Navbar';
 import PostCard from '../../components/Cards/PostCard/PostCard';
 import ProfileCard from '../../components/Cards/ProfileCard/ProfileCard';
-import { getUser, fetchPostsBySearch, fetchCommentBySearch } from '../../api/index';
+import { getUser, fetchPostsBySearch, fetchCommentsBySearch } from '../../api/index';
 import { IPost, IUser, IComment } from '../../api/modelsInterface';
 import { toast, Flip } from 'react-toastify';
 import { motion } from 'framer-motion';
@@ -27,7 +27,7 @@ const Profile: React.FC = () => {
                     .then(fetchedPost => setUserPosts( fetchedPost.data ))
                     .catch(err => toast.error(err.response.data.message, { transition: Flip }));
                 // get user's comments
-                fetchCommentBySearch('', fetchedUser.data._id)
+                fetchCommentsBySearch('', fetchedUser.data._id)
                     .then(fetchedComments => setUserComments(fetchedComments.data))
                     .catch(err => toast.error(err.response.data.message, { transition: Flip }));
                 // set user info
