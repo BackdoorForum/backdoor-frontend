@@ -33,3 +33,14 @@ export interface IUser {
     votedPosts: [string];
     votedComments: [string];
 }
+
+export interface IComment {
+    user: string;
+    body: string;
+    post: string;
+    votes: [string];
+    downVotes: [string];
+    edited: boolean;
+    createdAt: Date;
+    updatedAt: Date;
+}

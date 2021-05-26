@@ -34,7 +34,7 @@ const ThreadDetails: React.FC = () => {
 
     // Get posts belonging to this particular thread.
     useEffect(() => {
-        fetchPostsBySearch('', threadName)
+        fetchPostsBySearch('', threadName, '')
             .then(res => {
                 setPosts(res.data);
             })
