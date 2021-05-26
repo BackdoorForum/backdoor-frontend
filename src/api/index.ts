@@ -22,7 +22,7 @@ export const deletePost = (id: string) => API.delete(`/posts/delete?id=${id}`);
 
 // Comments API Routes
 export const fetchComment = (commentId: string) => API.get('/comments/' + commentId);
-export const fetchCommentBySearch = (postId?: string, userId?: string) => API.get(`/comments/search?postId=${postId}&userId=${userId}`);
+export const fetchCommentsBySearch = (postId?: string, userId?: string) => API.get(`/comments/search?postId=${postId}&userId=${userId}`);
 export const createComment = (postId: string, comment: ICommentData) => API.post(`/comments/create?postId=${postId}`, comment);
 export const updateComment = (commentId: string, comment: ICommentData) => API.patch(`/comments/update`, { id: commentId, comment });
 export const reactComment = (commentId: string, action: 'like' | 'dislike') => API.patch(`/comments/react?commentId=${commentId}&action=${action}`);

@@ -6,6 +6,7 @@ import Login from './screens/Login/Login'
 import Profile from './screens/Profile/Profile';
 import Threads from './screens/Threads/Threads';
 import ThreadDetails from './screens/ThreadDetails/ThreadDetails';
+import PostDetails from './screens/PostDetails/PostDetails';
 import NewPost from './screens/NewPost/NewPost';
 import { ToastContainer } from 'react-toastify';
 import { checkAuthenticated } from './api/index';
@@ -53,8 +54,11 @@ function App() {
           <Route path="/threads" exact>
             <Threads />
           </Route>
-          <Route path="/threads/:threadName">
+          <Route path="/threads/:threadName" exact>
             <ThreadDetails />
+          </Route>
+          <Route path="/threads/:threadName/:postId">
+            <PostDetails />
           </Route>
           <Route path="/posts/new">
             <NewPost />
