@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import LoginModal from '../Modals/LoginModal/LoginModal';
 import CreateThreadModal from '../Modals/CreateThreadModal/CreateThreadModal';
 import { logout } from '../../api/index';
-import { UserCircleIcon } from '@heroicons/react/solid';
+import { LogoutIcon } from '@heroicons/react/solid';
 import { deauthenticate, setId, setUsername, setPermissionLevel } from '../../store/userSlice';
 import { toast, Flip } from 'react-toastify';
 import NavLink from './NavLink';
@@ -59,11 +59,14 @@ const Navbar: React.FC = () => {
                 </Link>
                 <Link to={`/users/${username}`}>
                     <NavLink>
-                        <UserCircleIcon className="w-8 text-red-lighter" />
+                        {(username?.length > 15)
+                            ? username.substring(0, 15) + '..'
+                            : username}
                     </NavLink>
                 </Link>
                 <NavLink clicked={logoutClickHandler}>
-                    Logout
+                    <div className="hidden lg:block"> <LogoutIcon className="w-8 text-red-lighter" /> </div>
+                    <div className="lg:hidden"> Logout </div>
                 </NavLink>
             </>
         );

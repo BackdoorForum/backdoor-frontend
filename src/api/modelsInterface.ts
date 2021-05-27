@@ -21,7 +21,7 @@ export interface IThread {
 }
 
 export interface IUser {
-    permission_level: number;
+    permissionLevel: number;
     email: string;
     verified: Boolean;
     username: string;

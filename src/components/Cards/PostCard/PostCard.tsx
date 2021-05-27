@@ -22,8 +22,7 @@ const PostCard: React.FC<Props> = props => {
 
     return (
         <div
-
-            className="flex flex-col justify-around w-11/12 md:w-10/12 xl:w-9/12 2xl:w-8/12
+            className="flex flex-col max-h-72 justify-around w-11/12 md:w-10/12 xl:w-9/12 2xl:w-8/12
             rounded-2xl bg-grey-lighter my-8 box-border"
         >
             {/* Post title and body */}
