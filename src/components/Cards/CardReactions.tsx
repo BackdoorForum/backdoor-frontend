@@ -1,20 +1,21 @@
 import { ArrowUpIcon, ArrowDownIcon, AnnotationIcon } from '@heroicons/react/solid';
 import { IStore } from '../../store/userInterface';
 import { Link } from 'react-router-dom';
-import { reactPost } from '../../api/index';
+import { reactComment, reactPost } from '../../api/index';
 import { toast, Flip } from "react-toastify";
 import { useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 interface Props {
-    id: string;
+    id: string; // The id of the post of the comment depending on which card the component is on
     votes: [string];
     downVotes: [string]
-    showComments?: boolean;
+    showComments?: boolean; // Do we want to show the comments icon at the right?
+    comment?: boolean; // Does this reactions element belong to a CommentCard or a PostCard?
     threadName?: string
 }
 
-const PostCardReactions: React.FC<Props> = props => {
+const CardReactions: React.FC<Props> = props => {
     const [votes, setVotes] = useState<[string]>();
     const [downVotes, setDownVotes] = useState<[string]>();
     const [userUpvoted, setUserUpvoted] = useState(false);
@@ -40,24 +41,44 @@ const PostCardReactions: React.FC<Props> = props => {
         updateVotes(props.votes, props.downVotes);
     }, [props.votes, props.downVotes, userId, updateVotes]);
 
-    const likePostHandler = () => {
-        reactPost(props.id, 'like')
-            .then(res => {
-                setVotes(res.data.votes);
-                setDownVotes(res.data.downVotes);
-                updateVotes(res.data.votes, res.data.downVotes);
-            })
-            .catch(err => toast.error(err.response.data.message, { transition: Flip }));
+    const likeHandler = () => {
+        if (props.comment) {
+            reactComment(props.id, 'like')
+                .then(res => {
+                    setVotes(res.data.votes);
+                    setDownVotes(res.data.downVotes);
+                    updateVotes(res.data.votes, res.data.downVotes);
+                })
+                .catch(err => toast.error(err.response.data.message, { transition: Flip }));
+        } else {
+            reactPost(props.id, 'like')
+                .then(res => {
+                    setVotes(res.data.votes);
+                    setDownVotes(res.data.downVotes);
+                    updateVotes(res.data.votes, res.data.downVotes);
+                })
+                .catch(err => toast.error(err.response.data.message, { transition: Flip }));
+        }
     }
 
-    const dislikePostHandler = () => {
-        reactPost(props.id, 'dislike')
-            .then(res => {
-                setVotes(res.data.votes);
-                setDownVotes(res.data.downVotes);
-                updateVotes(res.data.votes, res.data.downVotes);
-            })
-            .catch(err => toast.error(err.response.data.message, { transition: Flip }));
+    const dislikeHandler = () => {
+        if (props.comment) {
+            reactComment(props.id, 'dislike')
+                .then(res => {
+                    setVotes(res.data.votes);
+                    setDownVotes(res.data.downVotes);
+                    updateVotes(res.data.votes, res.data.downVotes);
+                })
+                .catch(err => toast.error(err.response.data.message, { transition: Flip }));
+        } else {
+            reactPost(props.id, 'dislike')
+                .then(res => {
+                    setVotes(res.data.votes);
+                    setDownVotes(res.data.downVotes);
+                    updateVotes(res.data.votes, res.data.downVotes);
+                })
+                .catch(err => toast.error(err.response.data.message, { transition: Flip }));
+        }
     }
 
     // {/* Post actions (Like, Dislike, etc) */ }
@@ -67,20 +88,20 @@ const PostCardReactions: React.FC<Props> = props => {
             <div className="flex justify-start items-center">
                 {userUpvoted ? (
                     <ArrowUpIcon className="w-7 text-red-lighter hover:text-white cursor-pointer"
-                        onClick={likePostHandler}
+                        onClick={likeHandler}
                     />) : (
                     <ArrowUpIcon className="w-7 text-white hover:text-red-lighter cursor-pointer"
-                        onClick={likePostHandler}
+                        onClick={likeHandler}
                     />
                 )}
                 < p className="mx-4 text-grey-light">{votes?.length}</p>
 
                 {userDownvoted ? (
                     <ArrowDownIcon className="w-7 text-syntax-purple hover:text-white cursor-pointer"
-                        onClick={dislikePostHandler}
+                        onClick={dislikeHandler}
                     />) : (
                     <ArrowDownIcon className="w-7 text-white hover:text-syntax-purple cursor-pointer"
-                        onClick={dislikePostHandler}
+                        onClick={dislikeHandler}
                     />
                 )}
                 < p className="mx-4 text-grey-light">{downVotes?.length}</p>
@@ -97,4 +118,4 @@ const PostCardReactions: React.FC<Props> = props => {
     );
 }
 
-export default PostCardReactions;
+export default CardReactions;

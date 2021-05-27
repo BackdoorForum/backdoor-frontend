@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
 import CardTitle from "../CardTitle";
-import PostCardReactions from '../PostCardReactions';
+import CardReactions from '../CardReactions';
 
 import CardBody from "../CardBody";
 
@@ -40,8 +40,7 @@ const PostCard: React.FC<Props> = props => {
                     </CardBody>
                 </Link>
             </div>
-
-            <PostCardReactions
+            <CardReactions
                 id={props.id}
                 votes={props.votes}
                 downVotes={props.downVotes}
