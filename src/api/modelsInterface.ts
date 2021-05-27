@@ -35,6 +35,7 @@ export interface IUser {
 }
 
 export interface IComment {
+    _id: string;
     user: string;
     body: string;
     post: string;
