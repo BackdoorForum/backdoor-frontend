@@ -78,7 +78,7 @@ const Signup: React.FC = () => {
             <PageBody>
                 <Sidebar
                     logo
-                    description="Engage in meaningful cybersecurity discussions."
+                    description="Engage in meaningful VIT Bhopal discussions."
                     descriptionColor="grey-darker"
                     bgColor="yellow"
                     illustration={SecureLoginIllustration}
@@ -89,7 +89,7 @@ const Signup: React.FC = () => {
                     <div className={`w-11/12 md:w-3/5 2xl:w-2/5 m-4 py-3 sm:py-6 xl:py-10 xl:px-8
         bg-grey-lighter rounded-3xl ${classes.Signup} flex flex-col justify-start items-center`}>
                         <Heading>
-                            Get your access to Backdoor
+                            Get your access to Devit
                         </Heading>
                         <form onSubmit={submitHandler} className="w-full mt-4 mb-2 mx-4 flex flex-col items-center">
                             <InputField placeholder="john.doe@example.com" type="email" name="email" required

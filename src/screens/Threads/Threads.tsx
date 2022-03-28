@@ -33,7 +33,7 @@ const Threads: React.FC = () => {
                 <Sidebar
                     bgColor="grey-lighter"
                     title="Threads"
-                    description="Explore top cybersecurity topics"
+                    description="Explore top VIT Bhopal topics"
                     titleColor="yellow"
                     descriptionColor="grey-light"
                     illustration={ChatIllustration}

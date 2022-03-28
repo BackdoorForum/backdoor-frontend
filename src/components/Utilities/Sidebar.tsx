@@ -37,7 +37,7 @@ const Sidebar: React.FC<Props> = props => {
             animate="visible"
         >
             {props.logo &&
-                <h2 className="font-logo text-xl text-red text-left pt-28 mx-2 my-4">Backdoor</h2>
+                <h2 className="font-logo text-xl text-red text-left pt-28 mx-2 my-4">Devit</h2>
             }
 
             {props.title && (

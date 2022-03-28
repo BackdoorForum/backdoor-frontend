@@ -44,7 +44,7 @@ const ProfileCard: React.FC<Props> = props => {
                 xl:px-12 xl:py-4 text-xl">
                 <div className="flex justify-start items-center text-grey-light text-red-lighter">
                     <KeyIcon className="w-8" />
-                    <p className="mx-4 hidden md:block">Backdoor Keys :</p>
+                    <p className="mx-4 hidden md:block">Devit karma :</p>
                     <p className="mx-2 font-black"> {props.score} </p>
                 </div>
                 <div className="flex justify-start items-center text-grey-light text-red-lighter">

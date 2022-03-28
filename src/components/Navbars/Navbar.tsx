@@ -96,7 +96,7 @@ const Navbar: React.FC = () => {
                         <li className="flex align-center self-stretch">
                             <Link to="/" className="transition-border duration-300 border-4 border-transparent 
                             hover:bg-grey-lighter py-4 px-3 font-logo text-lg text-red">
-                                Backdoor
+                                Devit
                             </Link>
                         </li>
                     </ul>
